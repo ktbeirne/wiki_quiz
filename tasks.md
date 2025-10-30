@@ -5,14 +5,62 @@
 
 ---
 
+## 🎉 完了済み作業 (2025-10-30)
+
+### Git/GitHub セットアップ
+- ✅ Gitリポジトリ初期化
+- ✅ GitHubリポジトリ連携: https://github.com/ktbeirne/wiki_quiz
+- ✅ mainブランチ作成・初回コミット
+- ✅ devブランチ作成
+
+### 自動化・CI/CD
+- ✅ CodeRabbit自動PRレビュー設定
+  - `.coderabbit.yaml` 作成（日本語レビュー、自動レビュー有効化）
+  - GitHubアプリ連携完了
+  - PR #1 でレビュー動作確認済み
+- ✅ AWS Amplify Hosting 自動デプロイ設定
+  - GitHub連携完了
+  - mainブランチへのマージで自動デプロイ
+  - デプロイURL: https://main.d1w4eib1zil6od.amplifyapp.com/
+
+### フロントエンド基盤
+- ✅ React 19.2.0 + Vite 7.1.12 セットアップ
+- ✅ TypeScript 5.9.3 設定
+- ✅ 基本的なプロジェクト構造作成
+  - `src/main.jsx` (エントリーポイント)
+  - `src/App.jsx` (ルートコンポーネント)
+  - `src/App.css`, `src/index.css` (スタイル)
+  - `index.html`
+- ✅ ランディングページ実装
+  - タイトル: "MLB日本人選手クイズ"
+  - 説明文
+  - "クイズを始める" ボタン（UI のみ）
+
+### バックエンド基盤
+- ✅ AWS Amplify Gen 2 セットアップ
+  - `@aws-amplify/backend` 1.17.0
+  - `@aws-amplify/backend-cli` 1.8.0
+  - `aws-amplify` 6.15.7
+- ✅ `amplify/backend.ts` 作成（空の定義）
+- ✅ `amplify/tsconfig.json` 作成
+- ✅ `amplify.yml` 作成（CI/CDビルド設定）
+- ✅ Amplify CLI 14.2.0 インストール
+- ✅ AWS認証情報設定完了
+
+### 開発ワークフロー確認
+- ✅ devブランチで開発 → PR作成 → CodeRabbitレビュー → mainマージ → 自動デプロイ
+- ✅ PR #1: "Initial setup: React app + Amplify Gen 2 backend" マージ完了
+
+---
+
 ## Phase 1: プロジェクトセットアップ
 
 ### 1.1 フロントエンド環境構築
-- [ ] Viteを使用してReactプロジェクトを作成
+- [x] Viteを使用してReactプロジェクトを作成
   ```bash
   npm create vite@latest wiki-quiz -- --template react
   ```
-- [ ] プロジェクトの依存関係をインストール
+- [x] プロジェクトの依存関係をインストール
 - [ ] Tailwind CSSのインストールと設定
   - [ ] tailwindcss, postcss, autoprefixerのインストール
   - [ ] `tailwind.config.js`の作成と設定
@@ -34,13 +82,13 @@
   ```
 
 ### 1.2 バックエンド環境構築（AWS Amplify）
-- [ ] AWS Amplify CLIのインストール
+- [x] AWS Amplify CLIのインストール
   ```bash
   npm install -g @aws-amplify/cli
   ```
-- [ ] Amplifyプロジェクトの初期化
+- [x] Amplifyプロジェクトの初期化（Gen 2形式）
   ```bash
-  amplify init
+  # Gen 2では amplify/backend.ts を作成
   ```
 - [ ] API (REST) の追加
   ```bash
@@ -305,16 +353,15 @@
 ## Phase 9: デプロイ
 
 ### 9.1 本番環境へのデプロイ
-- [ ] Amplify Hostingの設定
-- [ ] フロントエンドのビルド
+- [x] Amplify Hostingの設定
+- [x] フロントエンドのビルド（自動ビルド設定完了）
   ```bash
   npm run build
   ```
-- [ ] Amplifyへのデプロイ
-  ```bash
-  amplify publish
-  ```
-- [ ] 本番環境での動作確認
+- [x] Amplifyへの自動デプロイ設定（mainブランチへのマージで自動実行）
+- [x] 本番環境での動作確認
+  - URL: https://main.d1w4eib1zil6od.amplifyapp.com/
+  - ランディングページ表示確認済み
 
 ### 9.2 ドキュメント作成
 - [ ] README.mdの作成
@@ -370,4 +417,9 @@
 - [ ] 未着手
 - [x] 完了
 
-現在の進捗: **0% (0/合計タスク数)**
+現在の進捗: **Phase 1 セットアップ 部分完了**
+- ✅ Git/GitHub環境構築完了
+- ✅ CI/CD（CodeRabbit + Amplify Hosting）設定完了
+- ✅ React + Vite 基盤完了
+- ✅ Amplify Gen 2 初期設定完了
+- 🔄 次: フロントエンド開発（Phase 3-4）またはバックエンドAPI実装（Phase 2）
