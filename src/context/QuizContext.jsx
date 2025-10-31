@@ -17,6 +17,9 @@ export const QuizProvider = ({ children }) => {
   const [isAnswered, setIsAnswered] = useState(false);
   const [isCorrect, setIsCorrect] = useState(null);
 
+  // Score state
+  const [score, setScore] = useState(0); // Consecutive correct answers
+
   // Loading and error states
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -75,6 +78,13 @@ export const QuizProvider = ({ children }) => {
     const correct = selectedAnswer === quiz.correctAnswer;
     setIsCorrect(correct);
     setIsAnswered(true);
+
+    // Update score: increment if correct, reset if incorrect
+    if (correct) {
+      setScore((prevScore) => prevScore + 1);
+    } else {
+      setScore(0);
+    }
   };
 
   /**
@@ -99,6 +109,13 @@ export const QuizProvider = ({ children }) => {
     setError(null);
   };
 
+  /**
+   * Reset score (can be used for manual reset)
+   */
+  const resetScore = () => {
+    setScore(0);
+  };
+
   const value = {
     // State
     article,
@@ -107,6 +124,7 @@ export const QuizProvider = ({ children }) => {
     selectedAnswer,
     isAnswered,
     isCorrect,
+    score,
     loading,
     error,
 
@@ -117,6 +135,7 @@ export const QuizProvider = ({ children }) => {
     submitAnswer,
     showNextHint,
     resetQuiz,
+    resetScore,
   };
 
   return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;
