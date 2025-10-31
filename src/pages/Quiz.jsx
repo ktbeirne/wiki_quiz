@@ -11,6 +11,7 @@ const Quiz = () => {
     selectedAnswer,
     isAnswered,
     isCorrect,
+    score,
     selectAnswer,
     submitAnswer,
     showNextHint,
@@ -40,9 +41,17 @@ const Quiz = () => {
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="bg-white rounded-t-2xl shadow-xl p-6 border-b-2 border-gray-200">
-          <div className="flex items-center justify-between">
-            <div className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">
-              カテゴリ: MLBの日本人選手
+          <div className="flex items-center justify-between flex-wrap gap-3">
+            <div className="flex items-center gap-3">
+              <div className="inline-flex items-center bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold">
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                連続正解: {score}問
+              </div>
+              <div className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">
+                カテゴリ: MLBの日本人選手
+              </div>
             </div>
             <button
               onClick={() => navigate('/')}

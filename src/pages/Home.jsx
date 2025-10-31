@@ -3,7 +3,7 @@ import { useQuiz } from '../context/QuizContext';
 
 const Home = () => {
   const navigate = useNavigate();
-  const { loading, error, resetQuiz, fetchArticle, generateQuiz } = useQuiz();
+  const { loading, error, score, resetQuiz, fetchArticle, generateQuiz } = useQuiz();
 
   const handleStart = async () => {
     try {
@@ -29,8 +29,17 @@ const Home = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             MLB日本人選手クイズ
           </h1>
-          <div className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+          <div className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-2">
             カテゴリ: MLBの日本人選手
+          </div>
+          {/* Score Display */}
+          <div className="mt-3">
+            <div className="inline-flex items-center bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold">
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              連続正解数: {score}問
+            </div>
           </div>
         </div>
 
