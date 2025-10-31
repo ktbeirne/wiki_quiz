@@ -2,7 +2,7 @@ import type { APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai';
 
 /**
  * Lambda handler for article fetching and structuring
@@ -58,6 +58,19 @@ export const handler = async (event: any): Promise<APIGatewayProxyResult> => {
       model: 'gemini-flash-latest',
       generationConfig: {
         responseMimeType: 'application/json',
+        responseSchema: {
+          type: SchemaType.OBJECT,
+          properties: {
+            articleTitle: { type: SchemaType.STRING },
+            summary: { type: SchemaType.STRING },
+            keyFacts: {
+              type: SchemaType.ARRAY,
+              items: { type: SchemaType.STRING },
+            },
+            category: { type: SchemaType.STRING },
+          },
+          required: ['articleTitle', 'summary', 'keyFacts', 'category'],
+        },
       },
     });
 

@@ -1,6 +1,6 @@
 import type { APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda';
 import { v4 as uuidv4 } from 'uuid';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai';
 
 /**
  * Lambda handler for quiz generation
@@ -39,6 +39,28 @@ export const handler = async (event: any): Promise<APIGatewayProxyResult> => {
       model: 'gemini-flash-latest',
       generationConfig: {
         responseMimeType: 'application/json',
+        responseSchema: {
+          type: SchemaType.OBJECT,
+          properties: {
+            question: { type: SchemaType.STRING },
+            choices: {
+              type: SchemaType.ARRAY,
+              items: { type: SchemaType.STRING },
+            },
+            correctAnswer: { type: SchemaType.STRING },
+            hints: {
+              type: SchemaType.OBJECT,
+              properties: {
+                hint1: { type: SchemaType.STRING },
+                hint2: { type: SchemaType.STRING },
+                hint3: { type: SchemaType.STRING },
+              },
+              required: ['hint1', 'hint2', 'hint3'],
+            },
+            explanation: { type: SchemaType.STRING },
+          },
+          required: ['question', 'choices', 'correctAnswer', 'hints', 'explanation'],
+        },
       },
     });
 
