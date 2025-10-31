@@ -32,6 +32,8 @@ lerna-debug.log*
 *~
 
 # Amplify
+.amplify/
+amplify_outputs.json
 amplify/\#current-cloud-backend
 amplify/.config/local-*
 amplify/logs
